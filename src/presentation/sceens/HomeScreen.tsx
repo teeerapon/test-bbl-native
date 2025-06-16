@@ -22,6 +22,7 @@ const HomeScreen = () => {
 
     const onAdd = async () => {
         if (!detail || !title) return;
+
         const updated = await addTodo(title, detail);
         setTodos(updated);
     }
@@ -43,7 +44,11 @@ const HomeScreen = () => {
                 data={todos}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <TodoItem item={item} onToggle={() => onToggle} onDelete={() => onDelete} />
+                    <TodoItem
+                        item={item}
+                        onToggle={() => onToggle(item.id)}
+                        onDelete={() => onDelete(item.id)}
+                    />
                 )}
             />
 
